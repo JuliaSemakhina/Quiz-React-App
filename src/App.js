@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import MainMenu from './components/MainMenu'
+import EndScreen from './components/EndScreen'
+import Quiz from './components/Quiz'
+import { useGlobalContext } from './context'
 
 function App() {
+  const { gameState } = useGlobalContext();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Quiz App</h1>
+      {gameState === 'menu' && <MainMenu />}
+      {gameState === 'quiz' && <Quiz />}
+      {gameState === 'endscreen' && <EndScreen />}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
